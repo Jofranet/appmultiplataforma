@@ -6,7 +6,7 @@ let localStream;
 let pc;
 
 // Conectar al servidor WebSocket (mismo host)
-const ws = new WebSocket(`ws://${window.location.host}`);
+const ws = new WebSocket("https://appmultiplataforma.onrender.com");
 
 ws.onmessage = async (event) => {
     const message = JSON.parse(event.data);
