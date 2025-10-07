@@ -1,7 +1,7 @@
 {
   "hosting": {
-    "site": "lazapp-dbf05",
     "public": "public",
+    "site": "lazapp-dbf05",
     "ignore": [
       "firebase.json",
       "**/.*",
