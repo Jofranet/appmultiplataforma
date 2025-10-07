@@ -7,7 +7,6 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-// Servir la carpeta public localmente (opcional)
 app.use(express.static(path.join(__dirname, "public")));
 
 wss.on("connection", (ws) => {
