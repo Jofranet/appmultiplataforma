@@ -5,7 +5,7 @@ const remoteVideo = document.getElementById("remoteVideo");
 let localStream;
 let pc;
 
-// Conectar al servidor WebSocket (mismo host)
+// Conectar al servidor WebSocket
 const ws = new WebSocket("https://appmultiplataforma.onrender.com");
 
 ws.onmessage = async (event) => {
@@ -49,12 +49,14 @@ startBtn.onclick = async () => {
         remoteVideo.srcObject = event.streams[0];
     };
 
+    // Enviar candidatos ICE al servidor
     pc.onicecandidate = (event) => {
         if (event.candidate) {
             ws.send(JSON.stringify({ candidate: event.candidate }));
         }
     };
 
+    // Crear oferta
     const offer = await pc.createOffer();
     await pc.setLocalDescription(offer);
     ws.send(JSON.stringify({ offer }));
