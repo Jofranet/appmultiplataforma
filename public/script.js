@@ -6,7 +6,7 @@ let localStream;
 let pc;
 
 // Conectar al servidor WebSocket
-const ws = new WebSocket("https://appmultiplataforma.onrender.com");
+const ws = new WebSocket("wss://appmultiplataforma.onrender.com");
 
 ws.onmessage = async (event) => {
     const message = JSON.parse(event.data);
@@ -37,7 +37,12 @@ startBtn.onclick = async () => {
 
     pc = new RTCPeerConnection({
         iceServers: [
-            { urls: "stun:stun.l.google.com:19302" } // STUN de Google
+            { urls: "stun:stun.l.google.com:19302" }, // STUN de Google
+            {
+                urls: "turn:global.relay.metered.ca:80",
+                username: "openai",
+                credential: "123456"
+            }
         ]
     });
 
